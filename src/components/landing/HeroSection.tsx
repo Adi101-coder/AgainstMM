@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import AnimatedPill from './AnimatedPill'
 import DotIcon from './DotIcon'
 import DotMatrixText from './DotMatrixText'
@@ -6,6 +7,8 @@ import HeroDiagram from './HeroDiagram'
 import { fadeDown, fadeUp, staggerContainer, staggerItem } from './motion'
 
 export default function HeroSection() {
+  const isCompact = useMediaQuery('(max-width: 540px)')
+
   return (
     <section className="hero-section">
       <motion.div
@@ -14,7 +17,12 @@ export default function HeroSection() {
         animate="visible"
         variants={fadeDown}
       >
-        <DotMatrixText text="PRICE. PROVIDE." dotSize={5} gap={3} charGap={11} />
+        <DotMatrixText
+          text="PRICE. PROVIDE."
+          dotSize={isCompact ? 4 : 5}
+          gap={isCompact ? 2 : 3}
+          charGap={isCompact ? 7 : 11}
+        />
       </motion.div>
 
       <HeroDiagram />
@@ -26,7 +34,12 @@ export default function HeroSection() {
         variants={fadeUp}
         transition={{ delay: 0.35 }}
       >
-        <DotMatrixText text="COMPOUND." dotSize={5} gap={3} charGap={11} />
+        <DotMatrixText
+          text="COMPOUND."
+          dotSize={isCompact ? 4 : 5}
+          gap={isCompact ? 2 : 3}
+          charGap={isCompact ? 7 : 11}
+        />
       </motion.div>
 
       <motion.div

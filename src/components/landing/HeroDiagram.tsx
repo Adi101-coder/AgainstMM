@@ -4,15 +4,16 @@ import {
   useMotionValue,
   useTransform,
 } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import { scaleIn, staggerContainer } from './motion'
 
 const CENTER_X = 400
 const CENTER_Y = 230
 const ORBIT_TILT = 0.4
 
-/** Three widely spaced rings — inner planets orbit faster. */
-const ORBIT_RADII = [118, 205, 292] as const
+const ORBIT_RADII_DESKTOP = [118, 205, 292] as const
+const ORBIT_RADII_MOBILE = [88, 152, 218] as const
 
 interface OrbitBody {
   label: string
@@ -55,10 +56,11 @@ function OrbitRing({ radius }: { radius: number }) {
 
 interface OrbitingNodeProps {
   body: OrbitBody
+  orbitRadii: readonly number[]
 }
 
-function OrbitingNode({ body }: OrbitingNodeProps) {
-  const radius = ORBIT_RADII[body.ring]
+function OrbitingNode({ body, orbitRadii }: OrbitingNodeProps) {
+  const radius = orbitRadii[body.ring]
   const angle = useMotionValue(body.startAngle)
 
   useEffect(() => {
@@ -94,6 +96,12 @@ function OrbitingNode({ body }: OrbitingNodeProps) {
 }
 
 export default function HeroDiagram() {
+  const isMobile = useMediaQuery('(max-width: 640px)')
+  const orbitRadii = useMemo(
+    () => (isMobile ? ORBIT_RADII_MOBILE : ORBIT_RADII_DESKTOP),
+    [isMobile],
+  )
+
   return (
     <motion.div
       className="hero-diagram"
@@ -121,7 +129,7 @@ export default function HeroDiagram() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.25 }}
           >
-            {ORBIT_RADII.map((radius) => (
+            {orbitRadii.map((radius) => (
               <OrbitRing key={radius} radius={radius} />
             ))}
           </motion.g>
@@ -149,7 +157,7 @@ export default function HeroDiagram() {
             transition={{ duration: 0.7, delay: 0.35 }}
           >
             {bodies.map((body) => (
-              <OrbitingNode key={body.label} body={body} />
+              <OrbitingNode key={body.label} body={body} orbitRadii={orbitRadii} />
             ))}
           </motion.g>
         </g>

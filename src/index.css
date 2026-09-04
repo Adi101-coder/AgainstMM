@@ -61,6 +61,7 @@ button {
 .landing {
   min-height: 100vh;
   background: var(--color-bg);
+  overflow-x: clip;
 }
 
 /* ── Preloader ── */
@@ -658,30 +659,6 @@ button {
   font-size: 0.875rem;
   line-height: 1.6;
   opacity: 0.9;
-}
-
-@media (max-width: 640px) {
-  .stack-deck {
-    height: 380px;
-  }
-
-  .stack-card {
-    padding: 1.125rem 1.25rem;
-    border-radius: 28px;
-  }
-
-  .stack-card__copy h3 {
-    font-size: 0.9375rem;
-  }
-
-  .stack-card__description {
-    font-size: 0.8125rem;
-  }
-
-  .stack-scroll__bg {
-    inset: 6% 3%;
-    border-radius: 24px;
-  }
 }
 
 /* ── Operating cycle ── */
@@ -1384,18 +1361,228 @@ button {
   }
 }
 
+@media (max-width: 640px) {
+  .landing-header__inner {
+    width: min(100% - 2rem, var(--container));
+    min-height: 3.5rem;
+  }
+
+  .landing-nav__link {
+    font-size: 0.8125rem;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding: 2.5rem 1rem 3.5rem;
+  }
+
+  .hero-section__headline--top {
+    margin-bottom: 1rem;
+  }
+
+  .hero-section__headline--bottom {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-section__tagline {
+    max-width: none;
+    padding-inline: 0.25rem;
+  }
+
+  .hero-section__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .hero-section__actions .pill-btn-wrap {
+    display: flex;
+    width: 100%;
+  }
+
+  .hero-section__actions .pill-btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .hero-diagram {
+    width: 100%;
+  }
+
+  .stats-bar {
+    padding: 0 1rem 3rem;
+  }
+
+  .stats-bar__inner {
+    padding: 1.25rem;
+  }
+
+  .engine-section,
+  .thesis-section,
+  .features-section,
+  .faq-section,
+  .cta-section,
+  .principles-section {
+    padding-inline: 1rem;
+  }
+
+  .engine-section {
+    padding-block: 3rem 5rem;
+  }
+
+  .features-section__header {
+    margin-bottom: 2rem;
+  }
+
+  .stack-scroll__sticky {
+    min-height: 100svh;
+    padding: 4.75rem 1rem 2.5rem;
+  }
+
+  .stack-scroll__bg {
+    inset: 8% 2%;
+    border-radius: 20px;
+  }
+
+  .stack-deck {
+    height: 340px;
+  }
+
+  .stack-card {
+    padding: 1.125rem 1.125rem;
+    border-radius: 24px;
+  }
+
+  .stack-card__row {
+    gap: 0.875rem;
+  }
+
+  .stack-card__copy h3 {
+    font-size: 0.9375rem;
+  }
+
+  .stack-card__description {
+    font-size: 0.8125rem;
+  }
+
+  .cycle-section__sticky {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 4.75rem 1rem 2.5rem;
+  }
+
+  .cycle-section__flow {
+    flex-wrap: wrap;
+    row-gap: 0.625rem;
+  }
+
+  .cycle-section__flow .cycle-flow__chip + .cycle-flow__chip {
+    margin-left: 0;
+  }
+
+  .cycle-section__flow .cycle-flow__chip + .cycle-flow__chip::before {
+    display: none;
+  }
+
+  .cycle-section__cards {
+    min-height: 17.5rem;
+  }
+
+  .cycle-card {
+    padding: 1.25rem;
+  }
+
+  .cycle-card__title {
+    max-width: none;
+    font-size: 1.375rem;
+  }
+
+  .cycle-card__pattern {
+    width: min(36%, 7rem);
+  }
+
+  .integrations-section__header,
+  .integrations-section__note {
+    width: min(100% - 2rem, var(--container));
+  }
+
+  .principles-section__stage {
+    padding: 0.5rem;
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .principle-poster {
+    min-height: 22rem;
+  }
+
+  .cta-section__inner {
+    padding: 2rem 1.25rem;
+  }
+
+  .cta-section__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+
+  .cta-section__actions .pill-btn-wrap {
+    display: flex;
+    width: 100%;
+  }
+
+  .cta-section__actions .pill-btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .landing-footer {
+    padding-inline: 1rem;
+  }
+}
+
 @media (max-width: 540px) {
   .landing-header__inner {
     padding-block: 0.75rem;
   }
 
   .landing-nav {
-    gap: 1rem;
+    gap: 0.875rem;
   }
 
   .features-section__grid,
   .principles-section__stage {
     grid-template-columns: 1fr;
+  }
+
+  .stack-deck {
+    height: 320px;
+  }
+
+  .stack-card__row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stack-card__badge {
+    min-width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.75rem;
+  }
+
+  .cycle-rail {
+    gap: 0.625rem;
+  }
+
+  .cycle-rail__dot {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.625rem;
   }
 
   .landing-footer__columns {
@@ -1407,9 +1594,9 @@ button {
     align-items: flex-start;
   }
 
-  .hero-section__headline--top .dot-matrix,
-  .hero-section__headline--bottom .dot-matrix {
-    transform: scale(0.72);
-    transform-origin: center;
+  .dot-matrix {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
   }
 }

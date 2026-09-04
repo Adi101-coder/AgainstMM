@@ -5,6 +5,7 @@ import {
   useSpring,
 } from 'framer-motion'
 import { useMemo, useRef, useState } from 'react'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 export interface StackCardItem {
   id: string
@@ -49,6 +50,11 @@ export default function StackedCardDeck({
 }: StackedCardDeckProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [step, setStep] = useState(0)
+  const isMobile = useMediaQuery('(max-width: 640px)')
+  const isCompact = useMediaQuery('(max-width: 540px)')
+
+  const effectiveMultiplier = isCompact ? 0.42 : isMobile ? 0.52 : scrollMultiplier
+  const stepPx = isMobile ? 40 : STEP_PX
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -78,7 +84,7 @@ export default function StackedCardDeck({
     <div
       ref={containerRef}
       className="stack-scroll"
-      style={{ height: `${items.length * scrollMultiplier * 100}vh` }}
+      style={{ height: `${items.length * effectiveMultiplier * 100}vh` }}
     >
       <div className="stack-scroll__sticky">
         <div className="stack-scroll__bg" aria-hidden="true" />
@@ -106,7 +112,7 @@ export default function StackedCardDeck({
                   color: surface.text,
                 }}
                 animate={{
-                  y: -depthFromFront * STEP_PX,
+                  y: -depthFromFront * stepPx,
                   scale: 1 - depthFromFront * SCALE_STEP,
                   opacity: 1 - depthFromFront * 0.07,
                 }}

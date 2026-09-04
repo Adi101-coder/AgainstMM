@@ -6,6 +6,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useRef, useState } from 'react'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import Reveal from './Reveal'
 
 const steps = [
@@ -54,6 +55,9 @@ function CycleDotPattern() {
 export default function WorkflowSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [activeStep, setActiveStep] = useState(0)
+  const isMobile = useMediaQuery('(max-width: 640px)')
+  const isCompact = useMediaQuery('(max-width: 540px)')
+  const scrollStepVh = isCompact ? 32 : isMobile ? 38 : 55
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -81,7 +85,7 @@ export default function WorkflowSection() {
       <div
         ref={containerRef}
         className="cycle-section__scroll"
-        style={{ height: `${steps.length * 55}vh` }}
+        style={{ height: `${steps.length * scrollStepVh}vh` }}
       >
         <div className="cycle-section__sticky">
           <div className="cycle-section__inner">
