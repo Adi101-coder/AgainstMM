@@ -334,12 +334,12 @@ button {
 }
 
 .engine-section__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
   width: min(100%, var(--container));
   margin-inline: auto;
+}
+
+.engine-section__content {
+  max-width: 42rem;
 }
 
 .engine-section__title {
@@ -356,18 +356,11 @@ button {
 }
 
 .engine-section__body {
-  max-width: 22rem;
+  max-width: 36rem;
   margin-bottom: 1.5rem;
   font-size: 0.8125rem;
   line-height: 1.6;
   color: var(--color-muted);
-}
-
-.engine-section__graphic {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: var(--radius-lg);
 }
 
 /* ── Debug section ── */
@@ -999,8 +992,8 @@ button {
 }
 
 .principles-section__header {
-  max-width: 36rem;
-  margin-bottom: 3rem;
+  max-width: 34rem;
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
 }
 
 .principles-section__title {
@@ -1010,46 +1003,91 @@ button {
   letter-spacing: -0.03em;
 }
 
-.principles-section__grid {
+.principles-section__stage {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-
-.principle-card {
-  margin: 0;
-  padding: 2rem;
-  background: var(--color-surface-elevated);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.625rem;
+  padding: 0.625rem;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: box-shadow 0.3s;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: var(--color-surface);
 }
 
-.principle-card:hover {
-  box-shadow: 0 12px 40px rgb(0 0 0 / 5%);
-}
-
-.principle-card__quote {
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--color-text);
-  margin-bottom: 1.5rem;
-}
-
-.principle-card footer {
+.principle-poster {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  min-height: clamp(430px, 54vw, 560px);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-.principle-card footer strong {
-  font-size: 0.875rem;
+.principle-poster:hover {
+  box-shadow: 0 18px 40px rgb(26 26 26 / 8%);
+}
+
+.principle-poster__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1.125rem 1.25rem 0;
+}
+
+.principle-poster__logo {
+  color: var(--color-text);
+}
+
+.principle-poster__label {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 0.6875rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
 }
 
-.principle-card footer span {
+.principle-poster__copy {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.principle-poster__source {
+  margin-bottom: 0.75rem;
   font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.principle-poster__quote {
+  font-size: clamp(1.0625rem, 1.55vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.principle-poster__detail {
+  margin-top: 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
   color: var(--color-muted);
+}
+
+.principle-poster__visual {
+  display: grid;
+  place-items: center;
+  margin-top: auto;
+  min-height: 46%;
+  padding: 0.75rem 1rem 1.25rem;
+  background: linear-gradient(180deg, rgb(243 243 241 / 0%) 0%, rgb(243 243 241 / 85%) 100%);
+}
+
+.principle-poster__art {
+  width: min(100%, 15rem);
+  height: auto;
 }
 
 /* ── FAQ ── */
@@ -1294,7 +1332,7 @@ button {
   }
 
   .features-section__grid,
-  .principles-section__grid {
+  .principles-section__stage {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1355,7 +1393,8 @@ button {
     gap: 1rem;
   }
 
-  .features-section__grid {
+  .features-section__grid,
+  .principles-section__stage {
     grid-template-columns: 1fr;
   }
 
