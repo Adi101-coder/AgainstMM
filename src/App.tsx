@@ -1,3 +1,4 @@
+import Preloader from './components/landing/Preloader'
 import { useScrollToHash } from './hooks/useScrollToHash'
 import { Routes, Route } from 'react-router-dom'
 import Distribution from './pages/Distribution'
@@ -9,11 +10,14 @@ export default function App() {
   useScrollToHash()
 
   return (
-    <Routes>
-      <Route index element={<Home />} />
-      <Route path="methodology" element={<Methodology />} />
-      <Route path="distribution" element={<Distribution />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Preloader />
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="methodology" element={<Methodology />} />
+        <Route path="distribution" element={<Distribution />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   )
 }

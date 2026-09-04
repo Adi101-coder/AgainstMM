@@ -7,14 +7,39 @@ import ReadingProgress from '../components/docs/ReadingProgress'
 import DotMatrixText from '../components/landing/DotMatrixText'
 import LandingFooter from '../components/landing/LandingFooter'
 import LandingHeader from '../components/landing/LandingHeader'
+import StackedCardDeck, { type StackCardItem } from '../components/landing/StackedCardDeck'
 import { fadeUp, staggerContainer, staggerItem } from '../components/landing/motion'
 import { DISTRIBUTION_SECTIONS } from '../content/distribution'
 
-const allocations = [
-  { label: 'Surplus Reserve', pct: '40%', detail: 'Protocol equity — compounds the balance sheet' },
-  { label: 'Reinvestment', pct: '30%', detail: 'Inventory, quoting, and harvesting capacity' },
-  { label: 'Insurance Fund', pct: '20%', detail: 'First-loss protection for the senior vault' },
-  { label: 'Governance Distribution', pct: '10%', detail: 'External distribution — last, not first' },
+const allocations: StackCardItem[] = [
+  {
+    id: 'surplus-reserve',
+    badge: '40%',
+    title: 'Surplus Reserve',
+    subtitle: 'Protocol equity',
+    description: 'The primary sink for realized profit — compounds the balance sheet without diluting depositor claims.',
+  },
+  {
+    id: 'reinvestment',
+    badge: '30%',
+    title: 'Reinvestment',
+    subtitle: 'Capacity expansion',
+    description: 'Deployed into inventory acquisition, quoting capital, and dislocation harvesting capacity.',
+  },
+  {
+    id: 'insurance-fund',
+    badge: '20%',
+    title: 'Insurance Fund',
+    subtitle: 'First-loss protection',
+    description: 'Absorbs losses before depositor capital is touched and is replenished continuously from profit.',
+  },
+  {
+    id: 'governance-distribution',
+    badge: '10%',
+    title: 'Governance Distribution',
+    subtitle: 'External distribution',
+    description: 'The only allocation that leaves the protocol — paid only after the 20% AUM reserve gate is satisfied.',
+  },
 ]
 
 export default function Distribution() {
@@ -74,24 +99,10 @@ export default function Distribution() {
                 only when surplus reserve exceeds 20% of assets under management.
               </motion.p>
             </motion.div>
-
-            <motion.div
-              className="dist-allocation-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-8% 0px' }}
-              variants={staggerContainer(0.08)}
-            >
-              {allocations.map((item) => (
-                <motion.div key={item.label} className="dist-allocation-card" variants={staggerItem}>
-                  <span className="dist-allocation-card__pct">{item.pct}</span>
-                  <strong>{item.label}</strong>
-                  <p>{item.detail}</p>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
         </section>
+
+        <StackedCardDeck items={allocations} scrollMultiplier={0.65} />
 
         <div className="doc-body">
           <aside className="doc-body__aside">
