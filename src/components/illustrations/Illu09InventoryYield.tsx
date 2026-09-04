@@ -25,6 +25,7 @@ export default function Illu09InventoryYield() {
   let cursor = BAR_X
   const utilizedStart = BAR_X + ((30 + 20 + 12) / 100) * BAR_W
   const utilizedMid = utilizedStart + (38 / 200) * BAR_W
+  const uMaxX = BAR_X + (U_MAX_PCT / 100) * BAR_W
 
   return (
     <Stage viewBox="0 0 900 400" title="Inventory yield layer">
@@ -66,9 +67,9 @@ export default function Illu09InventoryYield() {
 
       {/* Utilization cap */}
       <motion.line
-        x1={BAR_X + (U_MAX_PCT / 100) * BAR_W}
-        y1={BAR_Y - 18}
-        x2={BAR_X + (U_MAX_PCT / 100) * BAR_W}
+        x1={uMaxX}
+        y1={BAR_Y - 8}
+        x2={uMaxX}
         y2={BAR_Y + BAR_H + 16}
         stroke={C.accent}
         strokeWidth={1.2}
@@ -76,11 +77,11 @@ export default function Illu09InventoryYield() {
         variants={fadeV}
       />
       <Txt
-        x={BAR_X + (U_MAX_PCT / 100) * BAR_W - 8}
-        y={BAR_Y - 24}
+        x={uMaxX}
+        y={BAR_Y - 22}
         size={10}
         weight={600}
-        anchor="end"
+        anchor="middle"
         fill={C.accent}
       >
         U_max

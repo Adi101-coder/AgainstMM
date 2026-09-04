@@ -100,10 +100,6 @@ export default function Illu11DislocationPipeline() {
           </g>
         )
       })}
-
-      <Txt x={48} y={384} size={10.5} weight={400} fill={C.muted}>
-        Dead pools, fake quotes, and structural artifacts are rejected before capital is committed
-      </Txt>
     </Stage>
   )
 }

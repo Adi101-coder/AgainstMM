@@ -13,10 +13,16 @@ const TOP = 74
 const GAP = 14
 const BAR_X = 596
 const PX_PER_PCT = 7.6
+const FOOTER_GAP = 24
+const FOOTER_H = 54
 
 export default function Illu08CapitalAuction() {
+  const lastRowBottom = TOP + (rows.length - 1) * (ROW_H + GAP) + ROW_H
+  const footerY = lastRowBottom + FOOTER_GAP
+  const viewHeight = footerY + FOOTER_H + 20
+
   return (
-    <Stage viewBox="0 0 900 400" title="Internal capital market allocation">
+    <Stage viewBox={`0 0 900 ${viewHeight}`} title="Internal capital market allocation">
       <Eyebrow x={48} y={30}>
         Scoreᵢ = ExpectedEdgeᵢ / Riskᵢ
       </Eyebrow>
@@ -97,12 +103,15 @@ export default function Illu08CapitalAuction() {
         )
       })}
 
-      <Box x={356} y={352} w={472} h={34} rx={10} fill={C.surface} />
-      <Txt x={392} y={374} size={11} weight={600} anchor="middle" mono>
+      <Box x={48} y={footerY} w={804} h={FOOTER_H} rx={10} fill={C.surface} />
+      <Txt x={72} y={footerY + 22} size={11} weight={600} mono>
         Σ 100
       </Txt>
-      <Txt x={452} y={374} size={10.5} weight={400} fill={C.muted}>
-        Highest risk-adjusted opportunities receive capital first — allocation is an auction, not a round robin
+      <Txt x={140} y={footerY + 20} size={10} weight={400} fill={C.muted}>
+        Highest risk-adjusted opportunities receive capital first —
+      </Txt>
+      <Txt x={140} y={footerY + 36} size={10} weight={400} fill={C.muted}>
+        allocation is an auction, not a round robin
       </Txt>
     </Stage>
   )

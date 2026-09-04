@@ -71,10 +71,6 @@ export default function Illu06CapitalStack() {
       <Txt x={714} y={TOP + 3} size={9.5} weight={400} fill={C.muted}>
         flow downward
       </Txt>
-
-      <Txt x={450} y={362} size={10.5} weight={400} anchor="middle" fill={C.muted}>
-        No trading strategy depends on token speculation for survival
-      </Txt>
     </Stage>
   )
 }
